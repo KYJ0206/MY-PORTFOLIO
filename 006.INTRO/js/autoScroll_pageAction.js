@@ -4,7 +4,7 @@
 // 현재 페이지 번호
 let pno = 0;
 // 전체 페이지 개수(상수로 변경불가!)
-const totnum = 5;
+const totnum = 4;
 // 광스크롤막기(0-허용,1-불허용)
 let psts = 0;
 
@@ -229,7 +229,7 @@ $(function () { /// jQB2 ////////////////////////
     // 막을 이벤트: touchstart, touchend
     // 원리: 이벤트 버블링 막기!(자식이벤트가 부모로 올라가는 현상!)
     // 사용메서드: e.stopPropagation()
-    $("#top,.indic,.swiperbtn,.slidebox1,.slbtn,.clse").on("touchstart touchend", function (e) {
+    $("#top,.indic,.swiperbtn,.slidebox1,.slbtn,.clse,.msgbox").on("touchstart touchend", function (e) {
         e.stopPropagation();
     }); /////////// 터치이벤트 버블링 막기 ///////////
 

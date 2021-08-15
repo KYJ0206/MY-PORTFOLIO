@@ -1509,6 +1509,10 @@ input {
         height: 80vh;
     }
 
+    .pjbx h2 {
+        font-size: 2rem;
+    }
+
     html .swiper-container {
         width: auto;
         padding: 12px 107px;
