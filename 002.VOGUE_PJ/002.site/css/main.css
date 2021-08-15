@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* 보그코리아 메인 CSS - main.css */
+
+/* 외부 CSS 합치기 */
+@import url(reset.css);
+@import url(core.css);
+@import url(common.css);
+
+
+/* 2. 메인영역 */
+/* 배경이미지 공통 */
+.bgi{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+/* 개별 배경이미지 class */
+.bgi1{
+    background-image: url(../images/cont1a.jpg);
+}
+.bgi2-1{
+    background-image: url(../images/cont2-1.jpg);
+}
+.bgi2-2{
+    background-image: url(../images/cont2-2.jpeg);
+}
+.bgi2-3{
+    background-image: url(../images/cont2-3.jpg);
+}
+.bgi3{
+    background-image: url(../images/cont3a.jpg);
+}
+.bgi4-1{
+    background-image: url(../images/cont4-1.jpg);
+}
+.bgi4-2{
+    background-image: url(../images/cont4-2.jpg);
+}
+.bgi4-3{
+    background-image: url(../images/cont4-3.jpg);
+}
+.bgi5{
+    background-image: url(../images/cont5a.jpg);
+}
+.bgi6-1{
+    background-image: url(../images/cont6-1.png);
+}
+.bgi6-2{
+    background-image: url(../images/cont6-2.jpg);
+}
+.bgi6-3{
+    background-image: url(../images/cont6-3.png);
+}
+.bgi7-1{
+    background-image: url(../images/cont7-1.jpg);
+}
+.bgi7-2{
+    background-image: url(../images/cont7-2.jpg);
+}
+.bgi7-3{
+    background-image: url(../images/cont7-3.jpg);
+}

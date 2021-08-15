@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* 보그코리아 서브페이지 CSS - sub.css */
+
+/* 외부 CSS 합치기 */
+@import url(reset.css);
+@import url(core.css);
+@import url(common.css);
+
+
+
+/* 임시 아웃라인 */
+/* body *{
+    outline: 1px dashed #ccc;
+} */
+
+/*********** 파트별 개별 디자인 ***********/
+
+
+
+/* 2. 메인영역 */
+
+/* 서브 타이틀 */
+.stit{
+    font-family: 'Pistilli', sans-serif;
+    font-size: 50px;
+    padding: 40px 0 20px;
+    text-align: center;
+    font-weight: normal;
+}
+
+/* 서브 페이지 메뉴(LNB:Local Navigation Bar) */
+.lnb{
+    padding: 5px 0 50px;
+}
+.lnb ul{
+    display: flex;/* 플렉스박스 */
+    justify-content: center;
+}
+.lnb li{
+    margin: 0 10px;
+}
+.lnb a{
+    font-family: 'NanumBarunGothic', sans-serif;
+    font-size: 18px;
+    color: #333;
+    font-weight: normal;
+}
+.lnb li:first-child a{
+    color: #f00;
+}
+
+
+
+/* 배경이미지 공통 */
+.bgi{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+/* 개별 배경이미지 class */
+
+/* .bgi1-1{
+    background-image: url(../images/fashion/cont1-1a.jpg);
+}
+.bgi1-2{
+    background-image: url(../images/fashion/cont1-2a.jpg);
+}
+.bgi1-3{
+    background-image: url(../images/fashion/cont1-3a.jpg);
+}
+.bgi2-1{
+    background-image: url(../images/fashion/cont2-1a.jpg);
+}
+.bgi2-2{
+    background-image: url(../images/fashion/cont2-2a.jpg);
+}
+.bgi2-3{
+    background-image: url(../images/fashion/cont2-3a.jpg);
+} */
+
+/* 컨텐츠 타이틀 작은글씨 */
+.pbx h2 small{
+    font-size: 14px;
+}

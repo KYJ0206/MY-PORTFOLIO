@@ -1,0 +1,139 @@
+@charset "utf-8";
+/* 보그 코아 CSS - core.css */
+
+/* 웹폰트 */
+
+/* 'Roboto체','Roboto Condensed체' */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Roboto:wght@300&display=swap');
+
+/* 나눔바른고딕 */
+@import url("https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@latest/nanumbarungothicsubset.css");
+
+/* pistilli체 */
+@import url('https://fonts.cdnfonts.com/css/pistilli');
+
+/* 
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'NanumBarunGothic', sans-serif;
+    font-family: 'Pistilli', sans-serif;
+*/
+
+
+
+/* 공통 class */
+
+/* 중앙속박스 */
+.ibx{
+    width: 1300px;
+    max-width: 100%;
+    /* 1300px보다 작아지면 100%적용 */
+    margin: 0 auto;/* 블록가로중앙 - 마영오! */
+    /* outline: 3px dashed blue; */
+}
+
+/* 비율유지박스 */
+.rbx{
+    position: relative;
+    /* 부모자격(.rbxIn) */
+}
+/* 가상요소 패딩비율밀기 */
+.rbx::before{
+    content: '';
+    display: block;
+}
+/* 스타일별 비율셋팅 */
+.st1.rbx::before{/* 1파티션 */
+    padding-top: 55.7%;
+}
+.st3.rbx::before{/* 3파티션 */
+    padding-top: 50%;
+}
+/* 가상요소속박스 */
+.rbxIn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/* 파티션 박스 */
+.pbx{
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+
+    /* outline: 2px dotted red; */
+}
+/* 파티션박스 가상요소로 보더애니구현 */
+.pbx::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    box-sizing: border-box;
+    /* 보더때문에 커지지 않도록 크기유지! */
+    
+    border: 0px solid transparent;/* 이거추가!!! */
+    transition: all .2s ease-in;
+}
+
+/* .pbx에 마우스 오버시 보더 생기기 */
+.pbx:hover::after{
+    border: 20px solid #f00;
+}
+
+/* 파티션 박스 스타일1 */
+.st1 .pbx{
+    width: 100%;
+}
+/* 파티션 박스 스타일2 */
+.fbx{/* 플랙스박스 */
+    display: flex;
+}
+.st3 .pbx{
+    flex: 1;
+}
+
+/* 숨기기 class (IR) */
+.ir{
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+
+/* 컨텐츠 타이틀 박스 */
+.pbx h2{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    font-family: 'Pistilli','NanumBarunGothic', sans-serif;
+    font-size: 33px;
+    font-weight: 200;/* 두꺼운체 해제 */
+    color: #fff;
+    text-align: center;
+
+    box-sizing: border-box;
+    padding: 50px;
+}
+
+/* 컨텐츠 타이틀 박스에 가상요소로 배경넣기(글자잘보이게!) */
+.pbx::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+    linear-gradient(to top, #000, transparent);
+    opacity: 0.7;
+}

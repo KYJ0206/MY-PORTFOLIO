@@ -1,0 +1,2123 @@
+@charset "utf-8";
+/* 인트로 페이지 - main.css */
+
+/* 웹폰트 : Noto Sans KR , Work Sans체 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Work+Sans&display=swap');
+
+/* 웹폰트 */
+/* NanumGothic체 */
+@font-face {
+    font-family: NG;
+    src: url(../fonts/NanumGothic.woff) format("woff");
+}
+
+/* Ubuntu체 */
+@font-face {
+    font-family: UB;
+    src: url(../fonts/UbuntuCondensed-Regular.woff) format("woff");
+}
+
+/* 
+ 웹폰트 설정
+font-family: 'Noto Sans KR', sans-serif;
+font-family: 'Work Sans', sans-serif;
+ */
+
+html {
+    font-size: 10px;
+
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* 보이는 화면기준 채우기 */
+    /* body하위 요소의 높이값 %의 기준이됨! */
+    overflow: hidden;
+    /* 스크롤바 없애기(스크롤안됨!) */
+}
+
+
+/* 공통셋팅 */
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+ul {
+    /* 3無 */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul::after {
+    /* float해제 */
+    content: '';
+    display: block;
+    clear: both;
+}
+
+li {
+    float: left;
+    /* 옆으로 흐르게 */
+}
+
+img {
+    border: none;
+    /* 이미지 링크시 테두리없앰 */
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 공통 class */
+
+/* 페이지 공통 class */
+.page {
+    position: relative;
+    /* 부모자격(.minfo) */
+    width: 100%;
+    height: 100%;
+    /* 한페이지 보이는 화면 채우기 */
+    overflow: hidden;
+    /* 넘치는 자식요소 숨기기 */
+    /* 
+                width: 100vw;
+                height: 100vh;
+                보이는 화면 기준의 뷰포트단위를 쓰면
+                body의 height 100%가 필요없다!
+                왜냐하면 보이는 화면을 기준하니까!
+                단, vw단위는 스크롤바 트랙까지 포함한
+                화면 전체를 기준하므로
+                데스트탑에서는 100%를 사용하는게 좋다!
+                (이유는 가로스크롤바가 생기게 되므로!)
+             */
+}
+
+/* IR(배경이미지 설명 숨기기) class */
+.ir {
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* 중앙 속박스 */
+.ibx {
+    width: 1920px;
+    max-width: 100%;
+    /* 1920px보다 작을땐 100%를 유지함! */
+    margin: 0 auto;
+    /* 마영오 - 중앙정렬 */
+}
+
+/* 1. 상단영역 */
+#top {
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    background-color: #10142c;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 60%);
+}
+
+/* 상단영역 속박스 */
+.top {
+    position: relative;
+}
+
+/* 1-1.로고 */
+#logo {
+    width: 10%;
+    margin-left: 4%;
+}
+
+#logo img {
+    width: 100%;
+    display: block;
+}
+
+
+/* 1-2. GNB 메뉴 */
+.gnb {
+    width: 100%;
+}
+.gnb ul{
+    position: absolute;
+    display: flex;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 44px;
+    transition: .7s;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+
+.gnb li {
+    flex: 1;
+    display: inline-block;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.gnb a {
+    position: relative;
+    display: block;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: bold;
+    font-family: ub;
+    text-align: center;
+    width: 100%;
+}
+
+
+
+.gnb li.on a {
+    color: #e7b522;
+    text-shadow: 0 0 2px #e7b522;
+}
+
+
+
+/* 햄버거버튼 */
+.ham {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 4%;
+    /* 부모는? .top */
+    width: 40px;
+    height: 25px;
+    /* outline: 1px solid red; */
+    cursor: pointer;
+    /* 손가락모양 */
+    z-index: 99999;/* .gbx보다위! */
+}
+
+/* 햄버거 막대 span공통 */
+.ham span {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: #fff;
+    /* 트랜지션 */
+    transition: all .4s ease-out;
+}
+
+/* 햄버거 막대 개별위치이동 */
+/* 1번막대 */
+.ham span:nth-child(1) {
+    top: 0;
+}
+
+/* 2번막대 */
+.ham span:nth-child(2) {
+    top: 10px;
+    left: -50%;
+    /* 트랜지션 때문에 초기값필요!(기본값이 auto라서!) */
+}
+/* 오버시 2번막대 이동! */
+.ham:hover span:nth-child(2) {    
+    left: 0;
+}
+
+
+/* 3번막대 */
+.ham span:nth-child(3) {
+    top: 20px;
+}
+
+/* .ham에 class="on"을 주면 span막대 변경하기 */
+
+/* 1번막대 : 중앙이동+시계방향45도회전 */
+.ham.on span:nth-child(1) {
+    top: 10px;
+    transform: rotate(45deg);
+    box-shadow: none;
+}
+
+/* 2번막대 : left위치 중앙이동+width는0 */
+.ham.on span:nth-child(2) {
+    width: 0;
+    left: 50%;
+}
+
+/* 3번막대 : 중앙이동+반시계방향45도회전 */
+.ham.on span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-45deg);
+    box-shadow: none;
+}
+
+.ham.on>ul {
+    opacity: 1;
+    width: 500px;
+    height: 30px;
+    line-height: 30px;
+}
+
+
+
+
+/* 2. 페이지영역 */
+/* 개별 페이지 셋팅 */
+/* 페이지 1 */
+
+#pg1 h1 {
+    font-family: 'Work Sans', sans-serif;
+}
+
+#pg1 h2 {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 페이지 2 */
+#pg2 {
+    background: #fff;
+    background-attachment: fixed;
+}
+
+/* 페이지 3 */
+#pg3 {
+    position: relative;
+}
+
+/* 페이지 4 */
+#pg4 {
+    position: static;
+    background-color: #fff;
+    background-attachment: fixed;
+}
+
+
+/* 인디케이터 */
+.indic {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    /* 세로중앙이동 */
+    left: 4%;
+    width: 20px;
+    /* outline: 3px dotted blue; */
+}
+
+.indic ul {
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.indic li {
+    width: 10px;
+    height: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    display: block;
+    background: #fff;
+    border: 1px solid #232a34;
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: 0;
+}
+
+/* a요소 */
+.indic a {
+    display: none;
+    width: 100%;
+    height: 2px;
+    margin-top: 4px;
+    background-color: #fff;
+    transition: width .4s;
+}
+
+/* 마우스 오버시 + 클래스 "on" */
+.indic li:hover a,
+.indic li.on {
+    width: 33px;
+    background: #10142c;
+}
+
+/* 설명글자숨기기 */
+.indic span {
+    display: none;
+}
+
+/* 페이지영역 정보 박스 */
+
+.minfo1 {
+    position: relative;
+
+}
+
+.minfo2 {
+    position: relative;
+
+}
+
+.minfo3 {
+    position: relative;
+}
+
+.minfo4 {
+    position: relative;
+}
+
+
+
+/* 공통 적용 */
+/* 스크롤 박스 */
+.scroll {
+    position: fixed;
+    width: 15%;
+    height: auto;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+}
+
+/* 스크롤 마우스 */
+.scrollin {
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+    width: 16px;
+    height: 43px;
+    border: 3px solid #10142c;
+    border-radius: 7px;
+}
+
+.scrollin::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #10142c;
+    border-radius: 50%;
+    animation: k_scroll 1.4s linear infinite;
+}
+@keyframes k_scroll {
+    to {
+        top: 120%;
+        opacity: 0;
+    }
+}
+
+.scroll span {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    color: #10142c;
+    font-family: UB;
+    font-size: 1.8rem;
+    text-shadow: 1px 0 0 #10142c, 0 1px 0 #10142c, -1px 0 0 #10142c, 0 -1px 0 #10142c;
+    white-space: nowrap;
+}
+
+.sp1{
+    transform: translateX(-125%);
+    letter-spacing: 5px;
+}
+
+.sp2{
+    transform: translateX(30%);
+    letter-spacing: 7px;
+}
+
+/* 위로가기버튼 */
+.tbtn {
+    position: fixed;
+    bottom: 30px;
+    right: 60px;
+    width: 65px;
+    height: 65px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #10142c;
+    color: #fff;
+    opacity: 0.9;
+    z-index: 999;
+    display: none;
+    border-radius: 50%;
+    border: 2px solid #10142c;
+    box-sizing: border-box;
+}
+
+/* 탑버튼 글씨 */
+.tbtn P {
+    position: absolute;
+    top: 13px;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    font-family: UB;
+    font-weight: bold;
+    font-size: 2rem;
+    letter-spacing: 5px;
+}
+
+/* 위로가기모양 */
+.fi {
+    display: inline-block;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    font-family: "fontisto";
+    font-size: 14px;
+    font-size: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fi-angle-up:before {
+    content: "\e96b";
+}
+
+
+
+
+
+/**************************** sec1 ****************************/
+
+/* 메인배경 */
+.mainBG{
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+}
+
+.mainBG img{
+    width: 60%;
+    position: absolute;
+    top: 44%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+/* 애니로고박스 */
+.anilogo{
+    width: 25%;
+    height: 45%;
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+/* 애니 이미지 */
+.ani1{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+
+    animation: aniLogo 8s linear infinite;
+    transform-origin: 50% 50%;
+}
+/* 애니로고 키프레임 */
+@keyframes aniLogo {
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.ani2{
+    position: absolute;
+    width: 100%;
+}
+
+/* 슬라이드 박스 설명글 */
+.sboxtit{
+    position: absolute;
+    width: 10%;
+    height: 70px;
+    top: 20%;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%);
+    border: 5px double #83878d;
+    box-sizing: border-box;
+    line-height: 55px;
+    font-size: 1.7vw;
+    color: #434343;
+    border-radius: 5px;
+    font-family: UB;
+}
+
+/* 타이핑 텍스트 박스 설정 */
+.typtit{
+    position: absolute;
+    top: 44%;
+    right: 5%;
+    font-size: 4.9vw;
+    font-weight: 600;
+    font-family: 'Kanit', sans-serif;
+    color: #000;
+    letter-spacing: 1px;
+}
+
+/* 타이핌 글자 */
+#typing{
+    font-size: 8rem;
+    font-weight: bold;
+    font-family: ub;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+/* 깜박임 커서 가상요소 */
+#typing::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -15px;
+    width: 4px;
+    height: 100%;
+
+    animation: typingAni 1s linear infinite;
+}
+
+@keyframes typingAni {
+    0%   { border-left: 8px solid rgba(85, 85, 85, 0); }
+    50%  { border-left: 8px solid #000; }
+    100% { border-left: 8px solid rgba(85, 85, 85, 0); }
+} /* 타이핑 키프레임 */
+
+
+/* 타이핑 서브 */
+.subtyping{
+    position: absolute;
+    top: 35%;
+    right: 5%;
+    text-align-last: left;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    font-family: NG;
+    color: #000;
+    white-space: nowrap;
+}  
+  
+.subtyping2{
+    position: absolute;
+    top: 59%;
+    right: 5%;
+    text-align-last: left;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    font-family: NG;
+    color: #000;
+    white-space: nowrap;
+}  
+  
+
+
+/******************** 슬라이드 ********************/
+
+.slidebox1 {
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    bottom: 10px;
+    height: 30%;
+    transition: 1s linear 3s;
+}
+
+
+.slide1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.slide1 li {
+    position: absolute;
+    /* 서로겹침 */
+    opacity: 0;
+    /* 모두투명하게 */
+    transition: .6s;
+    /* 트랜지션 */
+    width: 100%;
+    height: 100%;
+}
+
+/* 슬라이드 중 현재 슬라이드 클래스 */
+.slide1 li.on {
+    opacity: 1;
+    /* 보이게 */
+    z-index: 1;
+    /* 맨위에 */
+}
+
+.imgbox1 {
+    position: absolute;
+    width: 38vw;
+    height: 24vh;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 2%;
+    border: 1px solid #232a34;
+}
+
+.slide1 li img{
+    object-fit: cover;
+}
+
+.slide1 li img:nth-child(1) {
+    position: absolute;
+    width: 20vw;
+    height: 20vh;
+    top: 20px;
+    left: 20px;
+    box-sizing: border-box;
+    border-radius: 2%;
+}
+
+.imgbox2 {
+    position: absolute;
+    width: 38vw;
+    height: 24vh;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 2%;
+    border: 1px solid #232a34;
+}
+
+.slide1 li img:nth-child(2) {
+    position: absolute;
+    width: 20vw;
+    height: 20vh;
+    top: 20px;
+    left: 20px;
+    box-sizing: border-box;
+    border-radius: 2%;
+}
+
+.slide1 span {
+    display: block;
+    height: 100%;
+    text-align: left;
+    margin-left: 23vw;
+    margin-top: 3vh;
+    line-height: 6vh;
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #333;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 양쪽이동버튼 */
+.abtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 49px;
+    z-index: 2;
+}
+
+/* 마우스 오버시 배경이미지 위치변경 */
+.abtn:hover {
+    background-position-y: -49px;
+}
+
+/* 왼쪽버튼 */
+.lback {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    left: 3%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    box-shadow: 0 3px 10px #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 50%;
+    z-index: 999;
+}
+
+.lb {
+    left: 20%;
+    background: url(../images/btn_shop_bn_left.png) no-repeat;
+}
+
+/* 오른쪽버튼 */
+.rback {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    right: 3%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    box-shadow: 0 3px 10px #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 50%;
+    z-index: 999;
+}
+
+.rb {
+    right: 20%;
+    background: url(../images/btn_shop_bn_right.png) no-repeat;
+}
+
+
+
+
+/**************************** sec2 ****************************/
+
+.pack {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+/* 내부 전체 박스 */
+.packin {
+    position: relative;
+    height: 795px;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 상단박스 */
+.packtop {
+    display: flex;
+    height: 53%;
+    position: static;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+/* photo 박스 */
+.photo {
+    position: relative;
+    display: flex;
+    flex: 1;
+}
+
+/* 포토 속 전체 박스 */
+.phobox {
+    flex: 1;
+}
+
+
+/* 포토네임 */
+.phobox span {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    line-height: 6;
+    text-align: center;
+    font-size: 1.5vw;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* 사진 원박스 */
+.photoin {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    background: url(../images/K.Y.J.jpg) center top / cover no-repeat;
+    border: 1px solid #10142c;
+}
+
+
+/* 비율밀기 */
+.photoin::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+/* svg셋팅 */
+.photoin svg {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+}
+
+
+/* Certificate박스 */
+.pg2slide {
+    flex: 1;
+    overflow: hidden;
+}
+
+
+
+.pg2slide ul {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.pg2slide li{
+    position: absolute;
+    /* 서로겹침 */
+    opacity: 0;
+    /* 모두투명하게 */
+    transition: .6s;
+    /* 트랜지션 */
+    height: 100%;
+    width: 100%;
+}
+
+.pg2slide li.on{
+    opacity: 1;/* 보이게 */
+    z-index: 1;/* 맨위에 */
+}
+
+/* 스킬설명 이미지 */
+.pg2slide li img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+
+/* pg2pf 박스 */
+.pg2pf {
+    flex: 1;
+}
+
+.pg2in {
+    width: 90%;
+    height: 90%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 일러스트 소개 이미지 */
+.pg2in img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+
+/* 하단 skill박스 */
+.sec2box {
+    position: static;
+    width: 100%;
+    height: 31%;
+    bottom: 0%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: rgb(149 149 149);
+}
+
+
+/* 원박스 */
+.sec2box li {
+    position: relative;
+    width: 50%;
+}
+
+/* 원을 담는 박스 */
+.btns {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    background: url(images/man.jpg) no-repeat top/cover;
+    border-radius: 50%;
+}
+
+/* 비율밀기 */
+.btns::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+/* svg셋팅 */
+.btns svg {
+    position: absolute;
+    top: 0;
+}
+
+/* 3-4. 흐르는 자막 */
+.fcap {
+    position: static;
+    bottom: 30%;
+    left: 0;
+    height: 5%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 999;
+}
+
+/* 움직일박스 */
+.fcap ul {
+    position: relative;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 200%;
+    height: 100%;
+    animation: fcap 10s linear infinite;
+    background: rgb(16 20 44);
+}
+
+
+.fcap li {
+    display: flex;
+    width: 12.5%;
+    height: 100%;
+    text-align: center;
+    font: bold 1.5vw / 20px ub;
+    color: #fff;
+    text-shadow: 1px 1PX 1PX #000;
+    align-items: center;
+}
+
+/* 흐르는 글자 키프레임 */
+@keyframes fcap {
+    to {
+        left: -100%;
+    }
+}
+
+/* 흐르는 글자 키프레임 */
+
+
+/* 스킬박스 */
+/* html:skill */
+.html {
+    background-image: url(../images/m01.png);
+}
+
+
+/* css:skill */
+.css {
+    background-image: url(../images/m02.png);
+}
+
+
+/* js:skill */
+.js {
+    background-image: url(../images/m03.png);
+}
+
+
+
+/* jq:skill */
+.jq {
+    background-image: url(../images/m04.png);
+}
+
+
+
+
+/* circle 설정 */
+.c1 {
+    fill: none;
+    /* 채우기-기본색은 검정색(transparent-투명,none-없음) */
+    stroke: #fff;
+    /* 선색(안쓰면 안나옴) */
+    stroke-width: 10;
+    /* 선두께는 안쓰면 1px, 단위없으면 px */
+    stroke-linecap: round;
+    /* 선끝둥글게 */
+
+    stroke-dasharray: 300%;
+    /* 데쉬어레이를 50%로 놓고 선,공백이 몇조각나는지 본다!
+    50% * 6조각 = 300% 즉, 선으로만 채우는 크기임! */
+
+    stroke-dashoffset: 300%;
+    /* 데쉬어레이와 같은 크기를 데쉬옵셋에 주면 시작점이
+    밀려서 공백부터 시작함-> 선이 숨겨지는 효과가 생김! */
+
+    /* 트랜지션 : 퍼센트 증가에 따른 애니메이션 */
+    transition: .1s linear;
+}
+
+
+
+/* 퍼센트 글자 박스 */
+.txt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-100%, -30%);
+    font-size: 1.5vw;
+    text-shadow: 1px 1px 5px #333;;
+    color: #fff;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+}
+
+
+
+
+
+/**************************** sec3 ****************************/
+
+#pg3 {
+    position: relative;
+}
+
+
+/* 전체부모박스 */
+.wrap {
+    position: absolute;
+    width: 80vw;
+    height: 795px;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: rgb(255 252 252 / 80%);
+}
+
+/* 타이틀 */
+#tit {
+    font-size: 3vw;
+    margin: 0px;
+    text-align: center;
+    border-bottom: 3px double rgba(0, 0, 0, 0.665);
+    padding-bottom: 2vh;
+    font-weight: bold;
+}
+
+.wrapin{
+    display: flex;
+}
+
+/* 프로젝트 박스 공통 */
+.pjbx {
+    flex: 1;
+    width: 50%;
+    padding: 15px;
+    line-height: 5vh;
+    /* 
+     50%로 옆으로 흐르면 
+     2개의 블록박스가 나란히 오는데
+     이때 패딩을 주면 박스가 커지므로
+     하나가 아래로 내려간다
+     (50%넘으므로!)
+     이때 해결책!!!
+     보더나 패딩이 지정한 사이즈
+     내부로 포함되게 하는속성이 있다
+     box-sizing:border-box
+  */
+    box-sizing: border-box;
+    /* 기본값은 content-box(커지는박스) */
+}
+
+/* 프로젝트 영역 타이틀 */
+.pjbx h2 {
+    font-family: "Work Sans", sans-serif;
+    font-size: 3rem;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    border: 2px solid rgb(16 20 44);
+    border-radius: 13px;
+    text-shadow: rgb(0 0 0) 0px 0px 1px;
+    box-shadow: rgb(57 63 72) 0px 0px 5px;
+    background-color: rgb(57 63 72);
+    line-height: 6vh;
+}
+
+
+/* 스와이퍼 */
+html .swiper-container {
+    width: 100%;
+    padding: 50px 200px;
+    padding-bottom: 80px;
+    max-width: 400px;
+    min-width: 180px;
+}
+
+/* 이미지박스 */
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    border: 1px solid #10142c;
+    box-sizing: border-box;
+}
+
+
+/* 이미지 */
+.swiper-slide img {
+    display: block;
+    width: 100%;
+}
+
+/* 스와이퍼 인디케이터 박스 */
+html .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0px 10px;
+}
+
+/* 스와이퍼 인디케이터 스타일 */
+html .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #000;
+    opacity: 1;
+    background-color: transparent;
+}
+
+html .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #10142c;
+}
+
+
+/* 스와이퍼 좌우버튼 스타일 */
+/* 왼쪽 */
+html .swiper-button-prev, html .swiper-container-rtl .swiper-button-next {
+    color: #232a34;
+}
+
+/* 오른쪽 */
+html .swiper-button-next, html .swiper-container-rtl .swiper-button-prev {
+    color: #232a34;
+}
+
+
+/* 팝업창 */
+/* 팝업창 뒷배경 */
+.popbg {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    display: none;
+    z-index: 999;
+}
+
+/* 팝업창 */
+.pop {
+    position: absolute;
+    background-color: rgb(255 255 255);
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    min-height: 30%;
+    border: 2px solid #10142c;
+    z-index: 9999;
+    display: none;
+}
+  
+.pop img {
+    width: 40%;
+    margin: 5%;
+    border: 1px solid #10142c;
+}
+  
+/* 웹사이트 바로가기 버튼 */
+html .baro {
+    position: absolute;
+    bottom: 3%;
+    width: 15vw;
+    height: 40px;
+    right: 20%;
+    background-color: #10142c;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1vw;
+    font-family: 'Nanum Gothic Coding';
+}
+  
+.baro>a {
+    display: block;
+    line-height: 30px;
+    width: 100%;
+    height: 30px;
+    color: #fff;
+    transition: .4s;
+}
+  
+.baro:hover {
+    background-color: #fff;
+    border: 2px solid #10142c;
+    box-sizing: border-box;
+}
+
+.baro:hover a{
+    color: #000;
+}
+
+.pop ul{
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    width: 45%;
+}
+  
+.pop li {
+    float: none;
+    line-height: 3;
+    font-size: 1vw;
+    font-weight: bold;
+}
+  
+  /* 설명글 위에 일자선 */
+.pop li::before {
+    content: '';
+}
+  
+.pop .clse {
+    position: absolute;
+    width: 7vw;
+    height: 40px;
+    background-color: #fff;
+    border: 2px solid #10142c;
+    color: #10142c;
+    font-family: 'Encode Sans SC';
+    font-weight: bold;
+    border-radius: 10px;
+    right: 3%;
+    bottom: 3%;
+    cursor: pointer;
+    transition: all .4s;
+}
+  
+.pop .clse:hover {
+    background-color: #10142c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+  
+  
+
+
+
+
+/**************************** sec4 ****************************/
+
+/* 내부 전체 박스 */
+.minfo{
+    width: 80vw;
+    height: 795px;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(255 255 255);
+    transition: .8s;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 내부 텍스트 */
+.minfo4 p {
+    font-size: 1.2vw;
+    font-weight: bold;
+    font-family: ng;
+    text-align: center;
+    margin: 0;
+}
+
+/* 내부 첫번째 텍스트 */
+html .mainp {
+    margin-top: 25px;
+}
+
+/* 콘텍드 전체박스 */
+.contactbox {
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-top: 25px;
+}
+
+/* 왼쪽박스 */
+.contact_lb {
+    flex: 1;
+}
+
+/* 폼메일박스 */
+.msgbox {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid rgb(16, 20, 44);
+    overflow: hidden;
+}
+
+/* 폼메일 텍스트 */
+.msgbox label {
+    color: #000;
+    font-size: 1vw;
+}
+
+/* 입력창 */
+input {
+    background-color: transparent;
+    height: 25px;
+}
+
+/* 보내기 버튼 */
+#btnsend {
+    width: 120px;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 1vw;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    color: #fff;
+    background-color: #10142c;
+}
+
+#btnsend:hover{
+    background-color: #fff;
+    border: 2px solid #10142c;
+    color: #000;
+}
+
+/* 오른쪽 박스 */
+.contact_rb {
+    flex: 1;
+}
+
+
+
+
+
+/***************** 모바일 미디어쿼리 : 900px이하 *****************/
+@media only screen and (max-width:900px){
+
+/* 햄버거 버튼 */
+.ham {
+    width: 25px;
+}
+
+
+
+/**************************** sec1 ****************************/
+
+/* 타이핑 글자 */
+#typing {
+    font-size: 3.5rem;
+}
+
+/* 맨위 글자 */
+.subtyping {
+    font-size: 2rem;
+}
+
+/* 맨아래 글자 */
+.subtyping2 {
+    font-size: 2rem;
+}
+
+/* 슬라이드 */
+/* 슬라이드 이미지 */
+.slide1 li img:nth-child(1) {
+    position: absolute;
+    width: 20vw;
+    height: 20vh;
+    top: 7%;
+}
+
+
+/* 왼쪽버튼 */
+.lback {
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+}
+
+/* 오른쪽 이동버튼 */
+.rback{
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+}
+
+
+/**************************** sec2 ****************************/
+    /* 전체 내부 박스 */
+    .packin {
+        height: 80vh;
+    }
+
+/**************************** sec3 ****************************/
+    /* 전체 내부 박스 */
+    .wrap{
+        height: 80vh;
+    }
+
+    html .swiper-container {
+        width: auto;
+        padding: 12px 107px;
+        padding-bottom: 15px;
+        min-width: 120px;
+        max-width: 150px;
+    }
+
+    /* 스와이퍼 이미지 */
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+    }
+
+    /* 블릿버튼 */
+    html .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+        bottom: -15px;
+    }
+
+    /* popup창 */
+    .pop{
+        width: 65%;
+    }
+
+    /* 바로가기 */
+    html .baro{
+        width: 20vw;
+    }
+
+    /* 닫기버튼 */
+    .pop .clse{
+        width: 10vw;
+        right: 2%;
+    }
+
+    /* 팝업글씨 */
+    .pop ul {
+        top: 30px;
+    }
+
+    .pop li{
+    float: none;
+    margin-left: 7%;
+    line-height: 2;
+    font-size: 1vw;
+    }
+  
+
+/**************************** sec4 ****************************/
+
+    /* 전체 내부 박스 */
+    .minfo{
+        height: 80vh;
+    }
+
+
+/********************* 공통 CSS *********************/
+
+    /* 탑버튼 */
+    .tbtn{
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+    }
+    /* 탑버튼 업모양 */
+    .fi-angle-up:before {
+        content: "\e96b";
+        position: absolute;
+        top: -6px;
+        left: 18px;
+    }
+    /* 탑버튼 글씨 */
+    .tbtn p{
+        top: 10px;
+        font-size: 1.5rem;
+    }   
+
+    /* 스크롤 */
+    .scroll{
+        position: fixed;
+        top: 20%;
+        left: 2%;
+        width: 7%;
+        height: 16%;
+        transform: rotate(180deg);
+        overflow: hidden;
+    }
+
+    /* 스크롤 속박스 */
+    .scrollin{
+        width: 1%;
+        height: 100%;
+        border: none;
+        border-left: 1px solid #232a34;
+    }
+
+    /* 스크롤 가상요소 */
+    .scrollin::before {
+        content: "";
+        position: absolute;
+        top: 130%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 8px;
+        background-color: #232a34;
+        width: 4px;
+        border-radius: 0;
+        opacity: 1;
+        animation: k_scroll 2s linear  infinite;
+    }
+    @keyframes k_scroll {
+        to {
+            top: -30%;
+            opacity: 0;
+        }
+    }
+
+    /* 스크롤 글씨 */
+    .scroll span{   
+        top: 33%;
+        left: 11px;
+        font-size: 1.2rem;
+        transform: rotate(270deg);
+        white-space: nowrap;
+    } 
+
+    .sp2{
+        display: none;
+    }
+
+    /* 인디케이터 */
+    .indic{
+        width: 12px;
+    }
+
+    /* 인디케이터 마우스 선택시 */
+    .indic li:hover a, .indic li.on{
+        width: 10px;
+    }
+
+} /* 미디어 쿼리 900px 이하 */
+
+
+
+
+
+
+
+
+/***************** 모바일 미디어쿼리 : 500px이하 *****************/
+@media only screen and (max-width:500px) {
+
+/********************* top *********************/
+
+    /* 로고 */
+    #logo{
+        width: 30%;
+        }
+    
+    /* 햄버거버튼 */
+    .ham{
+        width: 30px;
+        top: 50%;
+        right: 5%;
+    }
+    .ham.on>ul{
+        left: -35%;
+        width: 60px;
+        height: auto;
+        line-height: 35px;
+    }
+
+    /* gnb 전체박스 */
+    .gnb ul {
+        position: absolute;
+        display: flex;
+        top: 295px;
+        left: 185%;
+        transition: .7s;
+        width: 60px;
+        height: auto;
+        line-height: 35px;
+        overflow: hidden;
+        opacity: 1;
+        flex-direction: column;
+    }
+
+    /* gnb 개별박스 */
+    .gnb li {
+        flex: 1;
+        background: #10142c;
+        margin: 10px 0;
+        border-radius: 15px 0 0 15px;
+    }
+
+    .gnb a {
+        position: relative;
+        display: block;
+        font-size: 1.4rem;
+        color: #fff;
+        font-weight: normal;
+        font-family: ub;
+        text-align: center;
+        width: 100%;
+    }
+
+    .gnb li a:before{
+        display: none;
+    }
+
+
+
+
+
+/********************* sec1 *********************/
+
+    /* 배경 */
+    .mainBG img{
+        width: 150%;
+        position: absolute;
+        top: 43%;
+        left: 50%;
+    }
+
+    /* 애니로고 */
+    .anilogo{
+        width: 65%;
+        height: 35%;
+        position: absolute;
+        top: 42%;
+        left: 50%;
+    }
+
+
+    /* sec1 글자 */
+    .typtit{
+        top: 20%;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    #typing{
+        font-size: 3rem;
+    }
+    /* 맨위 타이틀 */
+    .subtyping{
+        top: 15%;
+        font-size: 2rem;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    /* 맨아래 타이틀 */
+    .subtyping2{
+        top: 60%;
+        font-size: 2.5rem;
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    /* sec1 슬라이드 */
+    /* 왼쪽 박스 */
+    .slidebox1{
+        bottom: 10px;
+    }
+
+
+    .sboxtit{
+        display: none;
+    }
+    .imgbox1{
+        top: 4%;
+        width: 90vw;
+        height: 13vh;
+        transform: none;
+    }
+
+    /* 오른쪽박스 */
+    .imgbox2{
+        top: 52%;
+        width: 90vw;
+        height: 13vh;
+        transform: none;
+    }
+    .slide1 li img:nth-child(1){
+        position: absolute;
+        object-fit: cover;
+        width: 40vw;
+        height: 10vh;
+        top: 50%;
+        left: 25%;
+        transform: translate(-50%,-50%);
+    }
+
+    .slide1 span{
+        margin-top: 0;
+        margin-left: 50vw;
+        line-height: 4vh;
+        font-size: 3.5vw;
+    }
+
+
+    /* 왼쪽버튼 */
+    .lback, .rback{
+        width: 45px;
+        height: 45px;
+        overflow: hidden;
+    }
+
+
+
+
+
+/********************* sec2 *********************/
+
+    /* 전체박스 */
+    .packin{
+        height: 75vh;
+        top: 52%;
+        overflow: hidden;
+    }
+
+    .packtop {
+        position: static;
+        height: 60%;
+        flex-direction: column;
+    }
+
+    .photo{
+        position: static;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .photoin svg{
+        width: 50%;
+    }
+
+    /* 증명사진박스 */
+    /* 증명박스 이름 */
+    .phobox span{
+        font-size: 3vw;
+        height: 25px;
+        line-height: 25px;
+        display: block;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    /* 일러스트프로필 */
+    .pg2pf{
+        padding: 15px;
+        box-sizing: border-box;
+        position: static;
+    }
+
+    .pg2in{
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+
+    /* 일러스트 이미지 */
+    .pg2in img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* skill설명박스 */
+    .pg2slide img{
+        object-fit: contain;
+    }
+
+    /* 흐르는 skill박스 */
+    .fcap{
+        display: none;
+    }
+
+    /* 하단스킬 박스 */
+    .sec2box{
+        position: static;
+        height: 32%;
+        flex-wrap: wrap;
+        border-radius: 13px;
+    }
+
+    .sec2box li{
+        position: static
+    };
+
+    /* %숫자 */
+    .txt{
+        font-size: 4vw;
+    }
+
+
+
+
+
+/********************* sec3 *********************/
+
+    /* 메인설명글 */
+    #tit{
+        font-size: 4.5vw;
+    }
+
+    /* 겉박스 */
+    .wrap{
+        height: 75vh;
+        top: 52%;
+    }
+
+    /* 속박스 */
+    .pjbx{
+        padding: 5px;
+        padding-top: 20px;
+    }
+
+    /* 속박스 메인글 */
+    .pjbx h2{
+        font-size: 2rem;
+        line-height: 5vh;
+    }
+
+    /* 속박스 마진수정 */
+    .pjbx ol>li{
+        margin-left: 5px;
+    }
+
+    /* 가상요소 제거 */
+    .pjbx li a::before{
+        display: none;
+    }
+
+    /* 제목 마진 제거 */
+    .pjbx a{
+        margin: 0;
+    }
+
+    /* 플러그인 */
+    html .swiper-container {
+        max-width: 65%;
+        min-height: 120px;
+        padding: 25px;
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    /* 왼쪽버튼 */
+    html .swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+        left: -10%;
+        right: auto;
+    }
+
+    /* 오른쪽 버튼 */
+    html .swiper-button-next, .swiper-container-rtl .swiper-button-prev{
+        right: -20px;
+        left: auto;
+    }
+
+    /* 블릿버튼박스 */
+    html .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+        bottom: 0;
+    }
+
+    /* 블릿버튼 */
+    html .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+        margin: 0px 5px;
+    }
+
+    /* 스와이퍼 이미지 */
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+    }
+
+    /* popup창 */
+    .pop{
+        width: 80%;
+    }
+
+    /* popup창 글씨 */
+    .pop ul {
+        top: 15px;
+    }
+
+    .pop li{
+        float: none;
+        margin-left: 7%;
+        line-height: 2;
+        font-size: 1vw;
+        }
+
+    /* 바로가기창 */
+    html .baro {
+        width: 45vw;
+        height: 30px;
+        right: 40%;
+    }
+
+    /* 닫기창 */
+    .pop .clse {
+        width: 25vw;
+        height: 30px;
+        right: 3%;
+    }
+
+
+
+
+
+
+
+/********************* sec4 *********************/
+
+    /* 내부박스 */
+    .minfo4{
+    height: 75vh;
+    top: 52%;
+    }
+
+
+
+
+
+
+/********************* 공통 CSS *********************/
+
+    /* 탑버튼 */
+    .tbtn{
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+    }
+    /* 탑버튼 업모양 */
+    .fi-angle-up:before {
+        content: "\e96b";
+        position: absolute;
+        top: -6px;
+        left: 18px;
+    }
+    /* 탑버튼 글씨 */
+    .tbtn p{
+        top: 10px;
+        font-size: 1.5rem;
+    }   
+
+    /* 스크롤 */
+    .scroll{
+        position: fixed;
+        top: 30%;
+        left: 3%;
+        width: 13%;
+        height: 11%;
+        transform: rotate(180deg);
+    }
+
+    /* 스크롤 속박스 */
+    .scrollin{
+        width: 1%;
+        height: 100%;
+        border: none;
+        border-left: 1px solid #232a34;
+    }
+
+    /* 스크롤 가상요소 */
+    .scrollin::before {
+        content: "";
+        position: absolute;
+        top: 130%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 8px;
+        background-color: #232a34;
+        width: 4px;
+        border-radius: 0;
+        opacity: 1;
+        animation: k_scroll 2s linear  infinite;
+    }
+    @keyframes k_scroll {
+        to {
+            top: -30%;
+            opacity: 0;
+        }
+    }
+
+    /* 스크롤 글씨 */
+    .scroll span{   
+        top: 35%;
+        left: 10px;
+        font-size: 1.5rem;
+        transform: rotate(270deg);
+        white-space: nowrap;
+    }  
+
+    /* 인디케이터 */
+    .indic{
+        width: 12px;
+    }
+
+    /* 인디케이터 마우스 선택시 */
+    .indic li:hover a, .indic li.on{
+        width: 10px;
+    }
+
+
+} /* 미디어 쿼리 500px 이하 */

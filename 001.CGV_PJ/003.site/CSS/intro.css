@@ -1,0 +1,86 @@
+@charset "utf-8";
+/* 인트로 페이지 css - intro.css */
+
+@import url(reset.css);
+/* 웹폰트 CDN */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+html, body{
+    height: 100%;
+    /* 높이값 보이는 화면에 채우기 */
+}
+/* 가상요소로 비디오 오버레이효과 만들기 */
+body::after{
+    content: '';
+    display: block;
+    /* div요소와 비슷해진다! */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* 부모는? 보이는 화면(window) */
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .5;/* 투명도 */
+}
+
+/* 비디오 */
+#myvid{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 
+    object-fit 속성 : img, video 요소에 사용하여 부모요소의 크기에 채우는 방식을 결정함
+    1. cover : 비율에 맞게 부모박스를 꽉 채운다
+    2. fill : 비율을 깨고 부모박스를 꽉 채운다 
+    3. contain : 이미지나 비디오의 전체크기를 다 보이게 한다
+    ( 위아래나 양옆에 공백이 생길 수 있음 ) - 기본값
+    */
+}
+
+/* 들어가기 버튼 박스 */
+#enter{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* 부모? 화면 */
+    transform: translate(-50%, -50%);
+    /* 박스크기의 절반씩 왼쪽과 위로 이동 ( 정중앙 이동 ) */
+
+    /* outline: 10px dotted lime; */
+
+    z-index: 1;/* body의 after가상요소보다 위! */
+
+    /* h1요소 리셋 */
+    margin: 0;
+    padding: 0;
+    font-size: 100%;  
+}
+
+/* Click Here 글자박스 */
+#enter span{
+    display: block;
+    text-align: center;
+    font: bold 34px/40px 'Audiowide';
+    /* font : 스(타일)두(께)크(기)/줄(간격) (글씨)체 */
+
+    /* 트랜지션 속(성)시(간)이(징)지(연시간) */
+    transition: all .4s ease-out .2s;/* 지연시간 0.2초 */
+}
+
+/* 박스에 오버시 span 변형하기 */
+#enter:hover span{
+    transform: scale(2);
+    color: chartreuse;
+}
+
+/* 로고이미지 */
+#enter img{
+    /* 트랜지션 : 속(성)시(간)이(징)지(연시간) */
+    transition: transform .4s ease-out .1s;
+}
+
+/* 박스에 마우스 오버시 이미지 변형하기 */
+#enter:hover img{
+    transform: rotate(-15deg) scale(1.5);
+}

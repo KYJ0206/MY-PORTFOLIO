@@ -1,0 +1,395 @@
+@charset "utf-8";
+/* 외부 CSS 파일 상단에는 반드시 인코딩형식을
+지정해야만 문자가 깨짐없이 잘 실행된다 */
+
+/* 웹폰트 CDN */
+@import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Jua&display=swap');
+/* 
+    font-family: 'Cute Font', cursive;
+    font-family: 'Jua', sans-serif;
+*/
+
+/* 초기화 CSS 호출 */
+@import url(reset.css);
+/* 
+    @import url(경로)
+    import방식을 사용하는 이유는
+    html에서 link방식으로 웹요청(http request)을
+    하게 되면 html에서의 디스플레이 속도가 느려진다
+    따라서 CSS파일에서 이를 import하여 합친형태로
+    html로 가져가면 속도가 향상된다
+    - 주의: import는 css파일 상단에 코딩해야함!
+*/
+
+/* CGV 메인 페이지 CSS - main.css */
+body {
+    background-color: #000;
+}
+
+/* 레이아웃 공통 */
+.part {
+    width: 1200px;
+    margin: 0 auto;
+    /* 블록요소 가로 중앙정렬 */
+    /* outline: 3px dotted yellow; */
+}
+
+/* 1. 상단부분 */
+#top {
+    position: relative;
+    /* 부모자격-다른 변화가 없어야 하므로 relative! */
+    height: 80px;
+    background: url(../images/curtain.jpg) repeat-x;
+    /* 외부CSS일 경우 이미지폴더는 CSS문서의 위치에서
+     찾아야 정확하게 표시된다! */
+     z-index: 9999;
+     /* z-index를 높은숫자로 준 이유? 가장위에 오도록하기 위해
+     - 상단부에 메뉴의 하위가 아래로 내려가서 가려지기 때문 */
+}
+/* 1-1. 페이지타이틀 */
+.tit{
+    color: aquamarine;
+    /* 글자색 */
+    font-size: 40px;
+    /* 글자크기 */
+    line-height: 80px;
+    /* 줄간격(세로중앙) */
+    text-align: center;
+    /* 인라인요소 가로중앙 */
+    font-family: 'Jua', sans-serif;
+    /* 웹폰트 : Jua체 적용 */
+
+    /* 텍스트 그림자로 글로우 효과 주기 */
+    text-shadow: 0 0 10px aquamarine;
+}
+/* 1-2.전체메뉴(GNB) */
+.gnb{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    /* 나의 부모는? #top */
+}
+.gnb li{
+    position: relative;
+    /* 부모자격 */
+    padding: 0 10px;
+    /* 패딩 양쪽10px */
+}
+.gnb a{
+    font-family: 'Jua', sans-serif;
+    /* 웹폰트 : Jua체 적용 */
+    /* 글자크기는 미지정시 기본크기 16px적용됨! */
+}
+/* 하위메뉴 */
+.smenu{
+    position: absolute;
+    /* 부모자격도 있음! */
+    top: 27px;
+    left: 50%;
+    /* 부모는? 싸고 있는 li */
+    transform: translateX(-50%);
+    /* 가로중앙이동(내크기의 절반을 왼쪽으로 이동) */
+    width: 110px;
+    padding: 5px;
+    background: url(../images/bg_smenu.png) no-repeat center/cover;
+    font-size: 11px;
+
+    /* 처음에 모두 안보이게 처리 */
+    display: none;
+    /* opacity:0은 투명하게 하는 것이고 이것은 아예출력을 안되게함 */
+}
+/* 상위메뉴 li에 마우스 오버시 하위메뉴 보이기 */
+.gnb>ul>li:hover .smenu{
+    display: block;
+}
+
+/* 하위메뉴 li요소 */
+.smenu li{
+    float: none;
+    /* float해제 */
+}
+/* 하위메뉴 a요소 */
+.smenu a{
+    display: inline-block;
+    /* 인라인인데 디자인 적용하기 */
+    width: 100%;
+    /* li박스 끝까지가기 */
+}
+
+/* 하위메뉴에 오버시 글자색변경 */
+.smenu a:hover{
+    color: #f00;
+}
+/* 하위메뉴에 가상요소로 손가락 넣기 */
+.smenu a::after{
+    content: '☞';
+    font-size: 15px;
+    float: right;
+    transform: translateY(-5px);
+    /* 현재위치에서 Y축 이동하기 */
+    opacity: 0;/* 투명처리 */
+}
+/* 하위메뉴에 마우스 오버시 가상요소 손가락 보이기 */
+.smenu a:hover::after{
+    opacity: 1;/* 보이게함 */
+}
+/* 가상요소로 삼각형 만들기 */
+.smenu::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: calc(50% - 10px);
+    /* calc는 %수치에서 특정px을 뺀 표현이다(중앙에 오도록!) 
+        calc로 빼기할때 주의사항: 마이너스 앞뒤에 공백필수!!!
+    */
+    /* 부모는? .smenu */
+    width: 0;
+    height: 0;
+    /* 정삼각형 보더로 만들기 */
+    border-bottom: 10px solid rgb(53 53 53);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    /* 역삼각형은 border-top에 준다! */
+    /* border-top: 10px solid red; */
+
+}
+/* 하위메뉴 내부 테두리는 ol에 준다 */
+.smenu ol{
+    border: 2px solid #ccc;
+    padding: 10px 0;
+}
+/* 하위메뉴 가로구분선 class */
+.hline{
+    border-top: 2px solid #ccc;
+    padding-top: 9px;
+}
+
+
+
+/* 1-3. 영사기 */
+#cam{
+    position: absolute;
+    /* 위치이동 & 부모자격 */
+    bottom: 0px;
+    right: -50px;
+    /* 나의 부모는? #top */
+}
+#cam img{
+    position: relative;
+    /* z-index를 적용하기 위해 */
+    width: 50px;
+    z-index: 1;
+    /* 빔박스보다 위에 - 마우스 오버시 회전 0도*/
+    transform: rotate(20deg);
+
+    /* 트랜지션: 속시이지 */
+    transition: transform .5s .3s;
+}
+/* 마우스오버시 이미지회전 */
+#cam:hover img{
+    transform: rotate(0deg);
+    transition-delay: 0;
+    /* 오버시엔 지연시간 없음 */
+}
+/* 빔박스 */
+.bim{
+    position: absolute;
+    top: -17px;
+    right: 7%;
+    /* 나의 부모는? #cam */
+    width: 0px;/* 200px로 마우스 오버시 변경 */
+    height: 71px;
+    background: url(../images/bim.png) no-repeat;
+    background-position: right center;
+    background-size: auto 100%;/* 세로크기에 맞춤 */
+
+    /* outline: 1px solid yellow; */
+    /* 트랜지션: 속시이지 */
+    transition: width .3s linear;
+}
+/* 마우스 오버시 빔등장 */
+#cam:hover .bim{
+    width: 200px;
+    transition-delay: .5s;
+    /* 마우스오버시 0.5초 지연시간 설정 */
+}
+
+/* 2. 메인부분 */
+#cont {
+    position: relative;
+    /* 부모자격 */
+    height: 788px;
+    background: url(../images/bg.jpg) no-repeat;
+}
+/* 2-1. 스크린박스 */
+#screen{
+    position: absolute;
+    top: 136px;
+    left: 257px;
+    /* 나의 부모는? #cont */
+    width: 701px;
+    height: 398px;
+    background-color: #000;
+}
+/* 스크린 아이프레임 */
+#screen iframe{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    /* 기본 프레임 보더를 없앰 */
+}
+
+/* 2-2.예고편선택메뉴 */
+.mlist{
+    position: absolute;
+    /* 부모자격도 됨! .movtxt의 부모*/
+    bottom: 56px;
+    left: 252px;
+    /* 나의 부모는? #cont */
+    overflow: hidden;
+    /* 넘치는 자식요소 숨기기
+    - .movtxt를 숨기기위해 설정. 
+    부모자격요소에 이 설정을 해야 적용된다! */
+}
+/* li 디자인 */
+.mlist ul>li{
+    padding: 0 10px;/* 양쪽패딩 */
+    cursor: pointer;
+    /* 마우스 오버시 손가락모양 */
+    /* 
+        커서값 옵션은?
+        https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor
+    */
+}
+/* 이미지 크기 지정 */
+.mlist img{
+    width: 99px;
+    height: 140px;
+}
+
+/* 영화정보박스 */
+.movtxt{
+    position: absolute;
+    /* 젠틀앱솔루트! 
+    - left값은 설정하지 않아서 현재 li부모박스 위치에
+    그대로 있게 된다! 이것이 젠틀이다! 그러나
+    left잡게 되면 큰박스인 .mlist가 부모이므로
+    한쪽에 모두 몰리게 된다. 바로위의 li를 부모로
+    만들고 또한 left값도 조정이 필요하다! 따라서
+    젠틀앱솔루트를 이용해야 구현이 편리하다!!!*/
+    top: 100%;/* 부모요소의 높이값이 기준 */
+    /* top에 대한 부모는? .mlist */
+    width: 99px;
+    height: 140px;
+
+    /* 글자셋팅 */
+    font-family: 'Cute Font', cursive;
+    font-size: 14px;
+    line-height: 25px;
+    color: #fff;
+    text-align: center;
+
+    background-color: rgba(0, 0, 0, 0.705);
+    /* 반투명배경 */
+
+    /* 트랜지션:속시이지 */
+    transition: top .4s ease-out;
+
+}
+/* 부모 li에 마우스 오버시 .movtxt 올라오기 */
+.mlist>ul>li:hover .movtxt{
+    top: 0;
+}
+
+.movtxt li{
+    float: none;
+    /* float해제 */
+}
+/* 첫번째 li는 영화제목이므로 디자인 변경 */
+.movtxt li:first-child{
+    margin-top: 30px;
+    color: aqua;
+    font-size: 17px;
+    /* 기본글자크기는 16px */
+    letter-spacing: -1px;
+}
+
+
+/* 3. 하단부분 */
+#info {
+    position: relative;
+    /* 부모자격 */
+    height: 100px;
+}
+/* 3-1.회사정보박스 */
+#info address{
+    font-style: normal;
+    /* address요소의 기본 이탤릭 해제 */
+    color: #fff;
+    font-family: 'Cute Font', cursive;
+    font-size: 18px;
+    line-height: 20px;
+
+    /* 안쪽여백 */
+    padding-top: 20px;
+    padding-left: 20px;
+}
+/* 하단로고 이미지 */
+#info address img{
+    float: left;
+    /* 이미지는 왼쪽에 글자는 오른쪽으로 흐르게 */
+    /* CSS학습>012.인라인플롯 참조 */
+    margin-right: 20px;
+}
+/* 3-2. sns버튼 */
+.sns{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    /* 나의 부모는? #info */
+}
+/* IR (배경이미지설명 숨기기) */
+.bld{
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+/* li 박스 */
+.sns li{
+    width: 34px;
+    height: 34px;
+    float: left;
+    margin: 2px;
+    /* outline: 2px solid lime; */
+
+    /* 배경이미지 넣기 - 스프라이츠! */
+    background: url(../images/sprites_logo.png) no-repeat;
+}
+/* 
+    [ 스프라이츠 위치정보 알아내기 ]
+    - 포토샵에서 사각선택툴로 맨위에서 부터 알고자하는 위치까지
+    드래그하여 가로크기는 배경 left값, 세로크기는 배경 top값으로
+    셋팅하면 된다!
+    - 아니면 info패널을 꺼내놓고 마우스 포인터 위치를 확인한다!
+*/
+/* 페이스북 */
+.sns li:nth-child(1){
+    background-position: -509px -429px;
+}
+/* 트위터 */
+.sns li:nth-child(2){
+    background-position: -551px -429px;
+}
+/* 인스타그램 */
+.sns li:nth-child(3){
+    background-position: -593px -429px;
+}
+
+/* sns a요소 확장 */
+.sns a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CGV PJ</title>
+    <!-- 외부CSS 불러오기 -->
+    <link rel="stylesheet" href="CSS/main.css">
+
+    <!-- <link rel="stylesheet" href="./css/reset.css"> -->
+    <!-- 외부 CSS가 많을 경우 특정 CSS하나에서
+        다른 외부 CSS를 import하여 한번만 파일요청을
+    하는 것이 html 랜더링 속도를 높여준다(CSS에서 호출!) -->
+
+
+    <!-- 
+            script 요소:
+            - 기본 자바스크립트를 코딩할 수 있는 인터널 코딩구역
+            - 요소 내부 데이터 구역은 자바스크립트 문법만 적용된다 ( 마치 대사관 내부는 그나라땅 )
+         -->
+    <script>
+        // 자바스크립트 구역
+        // 자바스크립트는 프로그래밍 언어이다
+        // 어떤 기능을 수행할 코드를 작성한다
+        // 수행코드는 바로 실행되지 않는다
+        // 실행코드 저장 구역을 "함수"라 한다
+        // 함수는 영어로 "function"이라고 한다
+        // 멍멍은 함수명, 먹이는 전달변수
+        // 변수는 전달값을 담는 저장소
+        function 멍멍(먹이) {
+            // alert(먹이);
+            // alert( 메세지 ) - 팝업경고창 띄움
+
+            // document는 혅재 html문서 전체 
+            // 점( . )은 그하위 세계
+            // getElementBy(아이디명) - 아이디요소
+            // src 속성명
+            // = (이퀄) 은 오른쪽의 값이 왼쪽으로 들어감
+            document
+                .getElementById("mv")
+                .src = "https://www.youtube.com/embed/" + 먹이 + "?autoplay=1";
+
+
+        } //////////// 멍멍 함수 ////////////
+    </script>
+
+
+
+</head>
+
+<body>
+    <!-- 1. 상단부분 -->
+    <header id="top" class="part">
+        <!-- 1-1.페이지타이틀 -->
+        <h1 class="tit">CGV 예고편 상영관</h1>
+        <!-- 1-2.전체메뉴(GNB) -->
+        <nav class="gnb">
+            <ul>
+                <li>
+                    <a href="#">영화</a>
+                    <!-- 서브메뉴 -->
+                    <div class="smenu">
+                        <ol>
+                            <li>
+                                <a href="#">무비차트</a>
+                            </li>
+                            <li>
+                                <a href="#">HD 트레일러</a>
+                            </li>
+                            <li>
+                                <a href="#">무비파인더</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hline">CGV아트하우스</a>
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">예매</a>
+                     <!-- 서브메뉴 -->
+                     <div class="smenu">
+                        <ol>
+                            <li>
+                                <a href="#">빠른예매</a>
+                            </li>
+                            <li>
+                                <a href="#">상영시간표</a>
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">극장</a>
+                     <!-- 서브메뉴 -->
+                     <div class="smenu">
+                        <ol>
+                            <li>
+                                <a href="#">CGV 극장</a>
+                            </li>
+                            <li>
+                                <a href="#">특별관</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hline">CLUB 서비스</a>
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">이벤트&amp;컬처</a>
+                     <!-- 서브메뉴 -->
+                     <div class="smenu">
+                        <ol>
+                            <li>
+                                <a href="#">이벤트</a>
+                            </li>
+                            <li>
+                                <a href="#">기프트샵</a>
+                            </li>
+                            <li>
+                                <a href="#">매거진</a>
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+            </ul>
+            <!-- 
+                    html에서 특수문자처리
+                    &(엠퍼샌드 ampersand) -> &amp;
+                    <(여는꺽쇠) -> &lt;
+                    >(닫는꺽쇠) -> &gt;
+                    공백 -> &nbsp;
+                    등 태그 출력시 에러 방지를 위해
+                    별도의 코드로 작성하면 출력된다!
+                 -->
+        </nav>
+        <!-- 1-3.영사기 -->
+        <aside id="cam">
+            <!-- 영사기 이미지 -->
+            <img src="images/gnb.png" alt="영사기">
+            <!-- 빔표시 박스 -->
+            <div class="bim"></div>
+        </aside>
+    </header>
+
+    <!-- 2. 메인부분 -->
+    <main id="cont" class="part">
+        <!-- 2-1. 스크린박스 -->
+        <div id="screen">
+            <!-- 유투브동영상 -->
+            <iframe id="mv" src="https://www.youtube.com/embed/vteD1f-SV5I?autoplay=1" allow="autoplay"></iframe>
+            <!-- 
+                    [ iframe 으로 유튜브 동영상 가져오기 ]
+                    - src 속성 : 불러올 페이지경로
+                    
+                    - 유튜브 경로구성:
+                    https://www.youtube.com/embed/동영상id
+                    
+                    - 유튜브 동영상 자동재생하기
+                    : 유튜브 src경로 맨끝에 ?autoplay=1 추가
+                    예시) 
+                    https://www.youtube.com/embed/동영상id?autoplay=1
+                    
+                    - 자동재생시 옵션추가
+                    : allow="autoplay" 자동재생 허용옵션을 반드시 써준다!
+                    [ 자동재생 제한사항! ]
+                    - 소리가 나는 경우 자동재생 불허용
+                    - 사용자가 동영상을 클릭하여 재생
+                    요청시 재생됨(소리가 날 경우 클릭해야함!)
+                    - 인트로페이지에서 메인페이지로
+                    요청해서 동영상 자동재생 기능 활성화할 것임!    -->
+        </div>
+
+        <!-- 2-2. 예고편 선택메뉴 -->
+        <nav class="mlist">
+            <ul>
+                <!-- 
+                        onclick 이벤트 속성의 값은 js구역이다
+                        onclick 은 click 이벤트가 발생하면 값이
+                        "" 안에 값으로 "함수명(전달값)" 
+                        전달값이 문자일 경우 홑따옴표로 싸준다
+                        쌍따옴표가 바깥에 있으면 홑따옴표를 쓴다
+                    -->
+                <li onclick="멍멍('4Aqs-ojuE_Y')">
+                    <!-- 4Aqs-ojuE_Y -->
+                    <img src="images/m1.jpg" alt="비와 당신의 이야기">
+                    <!-- 영화정보 -->
+                    <ol class="movtxt">
+                        <li>비와 당신의 이야기</li>
+                        <li>강하늘,천우희</li>
+                        <li>드라마,멜로/로맨스</li>
+                    </ol>
+                </li>
+                <li onclick="멍멍('DqR4exWz2iQ')">
+                    <!-- DqR4exWz2iQ -->
+                    <img src="images/m2.jpg" alt="서복">
+                    <ol class="movtxt">
+                        <li>서복</li>
+                        <li>공유,박보검,조우진</li>
+                        <li>드라마</li>
+                    </ol>
+                </li>
+                <li onclick="멍멍('lPYxbbKYYmE')">
+                    <!-- lPYxbbKYYmE -->
+                    <img src="images/m3.jpg" alt="미나리">
+                    <ol class="movtxt">
+                        <li>미나리</li>
+                        <li>스티븐연,한예리,윤여정</li>
+                        <li>드라마</li>
+                    </ol>
+                </li>
+                <li onclick="멍멍('Qh4bQK_PY90')">
+                    <!-- Qh4bQK_PY90 -->
+                    <img src="images/m4.jpg" alt="더 스파이">
+                    <ol class="movtxt">
+                        <li>더 스파이</li>
+                        <li>베네딕트 컴버배치</li>
+                        <li>스릴러</li>
+                    </ol>
+                </li>
+                <li onclick="멍멍('tfmRVC_GADw')">
+                    <!-- tfmRVC_GADw -->
+                    <img src="images/m5.jpg" alt="노매드랜드">
+                    <ol class="movtxt">
+                        <li>노매드랜드</li>
+                        <li>프란시스 맥도맨드</li>
+                        <li>드라마</li>
+                    </ol>
+                </li>
+                <li onclick="멍멍('2cIwqXS_ZK0')">
+                    <!-- 2cIwqXS_ZK0 -->
+                    <img src="images/m6.jpg" alt="내일의 기억">
+                    <ol class="movtxt">
+                        <li>내일의 기억</li>
+                        <li>서예지,김강우</li>
+                        <li>미스터리,스릴러</li>
+                    </ol>
+                </li>
+            </ul>
+        </nav>
+    </main>
+    <!-- 3. 하단부분 -->
+    <footer id="info" class="part">
+        <!-- 3-1. 회사정보 -->
+        <address>
+            <img src="images/blogo.png" alt="하단로고">
+            (04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동) <br>
+            대표이사 : 최병환사업자등록번호 : 104-81-45690통신판매업신고번호 : 2017-서울용산-0662 <br>
+            개인정보보호 책임자 : 정종민대표이메일 : cjcgvmaster@cj.netCGV고객센터 : 1544-1122
+        </address>
+        <!-- 3-2. sns버튼 -->
+        <ul class="sns">
+            <li>
+                <a href="https://www.facebook.com/CJCGV" target="_blank" title="페이스북 바로가기">
+                    <span class="bld">페이스북 바로가기</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/cj_cgv" target="_blank" title="트위터 바로가기">
+                    <span class="bld">트위터 바로가기</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/cgv_korea/" target="_blank" title="인스타그램 바로가기">
+                    <span class="bld">인스타그램 바로가기</span>
+                </a>
+            </li>
+        </ul>
+    </footer>
+    <!-- 
+            [ html5 - 레이아웃 요소들 ]
+            태그요소의 의미를 부여하여 레이아웃을 정의함
+            - 태그에 의미를 부여한 것을 "시멘틱"이라고 함
+            sementic(의미있는, 의미론적인)
+            - 시멘틱 요소는 의미가 있는 요소를 말한다
+            - 검색엔진이 테이터를 수집할때(크롤링할때)
+            시멘틱 요소로 내용별 분석이 가능하다.
+            좀 더 분석적이고 정교한 내용 분류를 통해서
+            검색내용이 구체적이고 정확할 수 있도록 한다
+            예) 호텔 사이트의 주요한 네이게이션(메뉴)
+            을 분석한다고 할때 호텔 사이트 분류의 nav
+            태그를 수집하여 내용을 분석한다!
+            [ 주요 시멘틱 레이아웃용 태그들 ]
+            1. header - 문서 또는 섹션의 상단부분을 정의
+            2. nav - 문서의 탐색 링크 셋트를 정의
+            3. section - 문서의 내용을 구분하는 섹션 정의
+            4. article - 독립적인 컨텐츠를 정의
+            5. aside - 메인 컨텐츠 이외의 요소를 정의
+            6. footer - 문서 또는 섹션의 하단부분을 정의
+            7. main - 문서의 중요 컨텐츠를 정의
+                (주의: 한 문서안에 단 한번만 쓸 수 있다!)
+            8. hgroup - h1~h6까지의 머릿글을 묶어주는 역할
+            -> 위의 모든 시멘틱 레이아웃 태그들은 모두
+            그 성격이 div와 같다~!!
+         -->
+</body>
+
+</html>
