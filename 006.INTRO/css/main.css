@@ -1643,7 +1643,7 @@ input {
     float: none;
     margin-left: 7%;
     line-height: 2;
-    font-size: 1vw;
+    font-size: 1.5vw;
     }
   
 
@@ -1658,6 +1658,7 @@ input {
     /* 폼메일박스 */
     .msgbox {
         padding: 5px;
+        border: none;
     }
 
     /* 콘텍트박스 */
@@ -2135,8 +2136,8 @@ input {
         float: none;
         margin-left: 7%;
         line-height: 2;
-        font-size: 1vw;
-        }
+        font-size: 1.5vw;
+    }
 
     /* 바로가기창 */
     html .baro {
@@ -2145,11 +2146,17 @@ input {
         right: 40%;
     }
 
+    /* 바로가기 글씨 */
+    .baro>a {
+        font-size: 3.5vw;
+    }
+
     /* 닫기창 */
     .pop .clse {
         width: 25vw;
         height: 30px;
         right: 3%;
+        font-size: 3.5vw;
     }
 
 
@@ -2164,6 +2171,10 @@ input {
     .minfo4{
     height: 75vh;
     top: 52%;
+    }
+
+    .minfo4 p {
+        font-size: 3.5vw;
     }
 
     /* 컨텍트박스 */
@@ -2206,6 +2217,7 @@ input {
 
     html .mainp{
         margin-top: 10px;
+        font-size: 3.5vw;
     }
 
     /* 보내기창 */
@@ -2227,6 +2239,7 @@ input {
         height: 35px;
         line-height: 29px;
         width: 140px;
+        font-size: 3.5vw;
     }
 
     /* 깃허브 */
@@ -2234,6 +2247,7 @@ input {
         height: 35px;
         line-height: 29px;
         width: 140px;
+        font-size: 3.5vw;
     }
 
 
