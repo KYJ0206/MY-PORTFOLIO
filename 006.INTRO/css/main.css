@@ -641,7 +641,7 @@ h3 {
     overflow: hidden;
     bottom: 10px;
     height: 30%;
-    transition: 1s linear 3s;
+    transition: 1s linear 1s;
 }
 
 
@@ -1129,8 +1129,8 @@ h3 {
 #tit {
     font-size: 3vw;
     margin: 0px;
-    text-align: center;
-    border-bottom: 3px double rgba(0, 0, 0, 0.665);
+    text-align: left;
+    width: 100%;
     padding-bottom: 2vh;
     font-weight: bold;
 }
@@ -1277,7 +1277,7 @@ html .baro {
     height: 40px;
     right: 20%;
     background-color: #10142c;
-    border: none;
+    border: 1px solid #e7b522;
     border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
@@ -1290,7 +1290,7 @@ html .baro {
     line-height: 30px;
     width: 100%;
     height: 30px;
-    color: #fff;
+    color: #e7b522;
     transition: .4s;
 }
   
@@ -1332,6 +1332,7 @@ html .baro {
     color: #10142c;
     font-family: 'Encode Sans SC';
     font-weight: bold;
+    font-size: 1vw;
     border-radius: 10px;
     right: 3%;
     bottom: 3%;
@@ -1341,8 +1342,8 @@ html .baro {
   
 .pop .clse:hover {
     background-color: #10142c;
-    color: white;
-    border: none;
+    color: #e7b522;
+    border: 1px solid #e7b522;
     cursor: pointer;
 }
   
@@ -1384,12 +1385,17 @@ html .mainp {
 .contactbox {
     width: 100%;
     height: auto;
+    padding: 50px 0;
     display: flex;
-    margin-top: 25px;
+    box-sizing: border-box;
 }
 
-/* 왼쪽박스 */
-.contact_lb {
+html .contactbox ul::after{
+    display: none;
+}
+
+/* 폼메일박스 */
+.contact_fm {
     flex: 1;
 }
 
@@ -1412,7 +1418,16 @@ html .mainp {
 /* 입력창 */
 input {
     background-color: transparent;
-    height: 25px;
+    width: 400px;
+    height: 30px;
+    border: 1px solid #10142c;
+}
+
+/* 내용창 */
+#msg{
+    width: 400px;
+    background-color: transparent;
+    border: 1px solid #10142c;
 }
 
 /* 보내기 버튼 */
@@ -1421,12 +1436,13 @@ input {
     height: 50px;
     margin-top: 10px;
     border-radius: 5px;
+    border: 1px solid #e7b522;
     font-size: 1vw;
     font-weight: bold;
     position: relative;
     z-index: 1;
     cursor: pointer;
-    color: #fff;
+    color: #e7b522;
     background-color: #10142c;
 }
 
@@ -1436,9 +1452,77 @@ input {
     color: #000;
 }
 
-/* 오른쪽 박스 */
-.contact_rb {
+/* 오른쪽박스 */
+.contnum{
+    display: flex;
+    flex-direction: column;
     flex: 1;
+}
+
+/* 인사박스 */
+.conttit{
+    flex: 1;
+}
+
+/* 연락처박스 */
+.phone{
+    flex: 1;
+}
+
+/* 링크버튼 */
+.linkbtn{
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+/* 카톡 버튼박스 */
+.kakao{
+    display: block;
+    border: 3px solid #e7b522;
+    border-radius: 5px;
+    background: #10142c;
+    color: #e7b522;
+    height: 50px;
+    line-height: 44px;
+    width: 170px;
+    text-align: center;
+    font-size: 1vw;
+    font-weight: bold;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* 마우스 오버시 */
+.kakao:hover{
+    background-color: #fff;
+    border: 3px solid #10142c;
+    color: #000;
+}
+
+/* 깃허브 박스 */
+.mygit{
+    display: block;
+    border: 3px solid #e7b522;
+    border-radius: 5px;
+    background: #10142c;
+    color: #e7b522;
+    height: 50px;
+    line-height: 44px;
+    width: 170px;
+    text-align: center;
+    font-size: 1vw;
+    font-weight: bold;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* 마우스 오버시 */
+.mygit:hover{
+    background-color: #fff;
+    border: 3px solid #10142c;
+    color: #000;
 }
 
 
@@ -1501,12 +1585,14 @@ input {
     /* 전체 내부 박스 */
     .packin {
         height: 80vh;
+        padding: 5px;
     }
 
 /**************************** sec3 ****************************/
     /* 전체 내부 박스 */
     .wrap{
         height: 80vh;
+        padding: 5px;
     }
 
     .pjbx h2 {
@@ -1566,8 +1652,50 @@ input {
     /* 전체 내부 박스 */
     .minfo{
         height: 80vh;
+        padding: 5px;
     }
 
+    /* 폼메일박스 */
+    .msgbox {
+        padding: 5px;
+    }
+
+    /* 콘텍트박스 */
+    .contactbox {
+        padding: 10px 0;
+    }
+
+    /* 폼메일 */
+    /* 입력창 */
+    input {
+        width: 200px;
+        height: 20px;
+    }
+
+    /* 내용입력창 */
+    #msg {
+        width: 200px;
+        height: 50px;
+    }
+
+    /* 보내기버튼 */
+    #btnsend {
+        height: 30px;
+        margin-top: 5px;
+    }
+
+    /* 링크 */
+    /* 카카오 */
+    .kakao {
+        height: 30px;
+        line-height: 24px;
+    }
+
+    /* 깃허브 */
+    .mygit {
+        height: 30px;
+        line-height: 24px;
+    }
 
 /********************* 공통 CSS *********************/
 
@@ -1995,6 +2123,7 @@ input {
     /* popup창 */
     .pop{
         width: 80%;
+        height: 220px;
     }
 
     /* popup창 글씨 */
@@ -2035,6 +2164,76 @@ input {
     .minfo4{
     height: 75vh;
     top: 52%;
+    }
+
+    /* 컨텍트박스 */
+    .contactbox {
+        width: 100%;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    /* 메일창 */
+    .msgbox {
+        padding: 10px;
+    }
+
+    /* 메일창 메인 */
+    .tit2{
+        font-size: 3.5vw;
+        font-weight: normal;
+    }
+
+    /* 입력창 */
+    input {
+        width: 90%;
+        height: 25px;
+        margin: 5px 0;
+    }
+
+    /* 내용입력창 */
+    #msg {
+        width: 90%;
+        margin-top: 5px;
+    }
+
+    /* 각 창 설명텍스트 */
+    .msgbox label {
+        color: #000;
+        font-size: 3.5vw;
+        font-weight: normal;
+    }
+
+    html .mainp{
+        margin-top: 10px;
+    }
+
+    /* 보내기창 */
+    #btnsend {
+        margin-top: 15px;
+        margin-bottom: 0;
+        font-size: 3.5vw;
+        font-weight: bold;
+        height: 30px;
+    }
+
+    /* 링크버튼박스 */
+    .linkbtn {
+        flex-direction: row;
+    }
+
+    /* 카카오 */
+    .kakao {
+        height: 35px;
+        line-height: 29px;
+        width: 140px;
+    }
+
+    /* 깃허브 */
+    .mygit{
+        height: 35px;
+        line-height: 29px;
+        width: 140px;
     }
 
 

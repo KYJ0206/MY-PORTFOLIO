@@ -47,7 +47,7 @@ $(function () { /// jQB ////////////////////////
         // -> 범용브라우저에서 사용하는 스크롤대상
         $("html,body").animate({
             scrollTop: pos + "px"
-        }, 1200, "easeOutQuint"); //// animate /////
+        }, 1200, "easeOutQuint",pageAction2); //// animate /////
 
         // 4. 클릭된 a요소의 부모 li에 class="on" 넣기
         $(".gnb li").eq(idx).addClass("on")

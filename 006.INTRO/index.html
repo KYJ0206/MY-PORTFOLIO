@@ -388,32 +388,48 @@
         <div class="pack1"></div>
         <article class="minfo minfo4">
             <h1 id="tit">CONTACT</h1>
-            <!-- 콘텍트박스 -->
-            <p class="mainp">안녕하세요! 신입 퍼블리셔 김영재 입니다!</p> <br>
-            <p>"열정", "끈기", "성실함" 을 기반으로</p> <br>
-            <p>배움의 자세로 누구보다 빠르게 배워나가겠습니다.</p>
+            <!-- 콘텍트박스 -->     
             <div class="contactbox">
-                <!-- 콘텍트박스 왼쪽 -->
-                <div class="contact_lb">
+                <!-- 폼메일박스 -->
+                <div class="contact_fm">
                     <!-- 이메일 보내기 -->
                     <form action="../Sndmail.php" method="post">
                         <p class="msgbox">
-                                <span class="inside"></span>
                                 <span class="tit2">SEND ME A EMAIL</span><br><br>
-                                <label for="nm">Your Name : </label><br>
+                                <label for="nm">Your Name</label><br>
                                 <input type="text" id="nm"><br>
-                                <label for="email">Your email : </label><br>
+                                <label for="email">Your email</label><br>
                                 <input type="text" id="email"><br>
-                                <label for="email">Your Title : </label><br>
+                                <label for="email">Your Title</label><br>
                                 <input type="text" id="title"><br>
-                                <label for="msg">Your Message : </label><br>
+                                <label for="msg">Your Message</label><br>
                                 <textarea id="msg" cols="40" rows="5"></textarea><br>
                                 <input type="button" value="Send" id="btnsend">
                             </p>
                         </form>
                 </div>
-                <!-- 콘텍트박스 오른쪽 -->
-                <div class="contact_rb"></div>
+                <!-- 오른쪽박스 -->
+                <ul class="contnum">
+                    <!-- 인사박스 -->
+                    <li class="conttit">      
+                        <p class="mainp">안녕하세요! 신입 퍼블리셔 김영재 입니다!</p> <br>
+                        <p>배움의 자세로 누구보다 빠르게 배워나가겠습니다.</p> <br>
+                    </li>
+                    <!-- 연락처박스 -->
+                    <li class="phone">
+                        <p>PHONE : 010-8344-0040</p> <br>
+                        <p>Email : gansoo@naver.com</p> <br>
+                    </li>
+                    <!-- 깃허브 버튼 -->
+                    <li class="linkbtn">
+                        <a class="kakao" href="https://open.kakao.com/o/s6fXNBud" target="_blank">
+                            카카오 오픈채팅
+                        </a>
+                        <a class="mygit" href="https://github.com/KYJ0206/MY-PORTFOLIO" target="_blank">
+                            GIT 바로가기
+                        </a>
+                    </li>
+                </ul>   
             </div>
         </article>
     </section>
